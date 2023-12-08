@@ -4,7 +4,8 @@ import pandas as pd
 
 
 # Incorporate data
-df = pd.read_csv('songs.csv')
+songs = pd.read_csv('songs.csv')
+artists = pd.read_csv('artists.csv')
 
 # Initialize the app
 app = Dash(__name__)
@@ -24,7 +25,7 @@ app.layout = html.Div([
     Input(component_id='controls-and-radio-item', component_property='value')
 )
 def update_graph(col_chosen):
-    fig = px.histogram(df, x='year', y=col_chosen, histfunc='avg')
+    fig = px.histogram(songs, x='year', y=col_chosen, histfunc='avg')
     return fig
 
 # Run the app
