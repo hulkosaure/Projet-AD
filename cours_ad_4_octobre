@@ -1,0 +1,14 @@
+Espace de recherche: en fouille de données, les données sont différentes de l'espace de recherche. L'espace de recherche ne fait pas référence aux données mais à l'ensemble théorique de tous es trucs qu'on pourrait donner en résultat
+
+Exempletu ticket de caisse. QUels sont les articles achetés fréquemment ensemble ?
+Résolution : IL faut qu'on modélise l'entrée, qu'on définisse la sortie, qu'on définisse une fn de score et qu'on fasse la recherhce algorithmique de la solution.
+
+Structure de l'entrée: Ticket de caisse = transaction
+
+Soit A un ensemble d'article;Soit T une transaction tq T inclus dans A
+
+Sortie: ensemble d'articles mais pas des tickets de caisse, les ensembles ne font pas forcément partie de l'entrée : x EST UN MOTIF,X inclus dans A
+On va chercher des X
+
+
+

@@ -15,7 +15,7 @@ app.layout = html.Div([
     html.Div(children='My First App with Data, Graph, and Controls'),
     html.Hr(),
     dcc.RadioItems(options=['liveness', 'explicit', 'danceability'], value='explicit', id='controls-and-radio-item'),
-    dash_table.DataTable(data=df.to_dict('records'), page_size=6),
+    dash_table.DataTable(data=songs.to_dict('records'), page_size=6),
     dcc.Graph(figure={}, id='controls-and-graph')
 ])
 
