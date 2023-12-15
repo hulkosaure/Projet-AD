@@ -28,7 +28,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [   
-        html.Div(children='Quoi la fure'),
+        html.Div(children='Quoi le feur'),
         html.Hr(),
         html.Label('Sélectionnez les colonnes à afficher :'),
         dcc.Dropdown(
@@ -37,15 +37,8 @@ app.layout = html.Div(
         multi=True,
         value=full_dataset.columns,
         ),
-        dcc.Textarea(id="col1"),
-        dcc.Textarea(id="col2"),
         html.Button('Mettre à jour', id='update-button', n_clicks=0), 
         html.Button('Réinitialiser', id='reset-button', n_clicks=0),
-        dcc.RadioItems(
-            id = "clusteringmethod",
-            options=['AffinityPropagation','DBSCAN'],
-            value='AffinityPropagation',
-            inline=True),
         dag.AgGrid(
             id="test",
             columnDefs=[{"field": i} for i in full_dataset.columns],
@@ -54,7 +47,37 @@ app.layout = html.Div(
             defaultColDef={"resizable": True, "sortable": True, "filter": True},
             dashGridOptions={"pagination": False},
             style={"height": 265}),
+        html.Div(
+            [
+                html.Div(
+                    [
+                        html.Label('Abscisses:'),
+                        dcc.Dropdown(
+                            id='plot_x',
+                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                        ),
+                    ],
+                    style={'flex': '50%', 'padding': '5px'}
+                ),
+                html.Div(
+                    [
+                        html.Label('Ordonnées:'),
+                        dcc.Dropdown(
+                            id='plot_y',
+                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                        ),
+                    ],
+                    style={'flex': '50%', 'padding': '5px'}
+                ),
+            ],
+            style={'display': 'flex'}
+        ),
         dcc.Graph(id="scatterplot"),
+        dcc.RadioItems(
+            id = "clusteringmethod",
+            options=['AffinityPropagation','DBSCAN'],
+            value='AffinityPropagation',
+            inline=True),
         dcc.Graph(id="clusterplot"),
     ],
     style={"margin": 20},
@@ -68,6 +91,7 @@ app.layout = html.Div(
     Input('reset-button', 'n_clicks'),
     State('column-dropdown', 'value')
 )
+
 def update_data(update_clicks, reset_clicks, selected_columns):
     changed_id = [p['prop_id'] for p in ctx.triggered][0]
     if 'reset-button' in changed_id and reset_clicks > 0:
@@ -81,19 +105,22 @@ def update_data(update_clicks, reset_clicks, selected_columns):
     return updated_column_defs, updated_data, dropdown_value
 
 @callback(
-    Output("scatterplot","figure"),
-    Input("col1","value"),
-    Input("col2","value")
+    Output("scatterplot", "figure"),
+    Input("plot_x", "value"),
+    Input("plot_y", "value")
 )
-def scatter(col1,col2):
-    current_data = full_dataset[["country","region",col1,col2]]
-    fig = px.scatter(current_data,
-    x=col1,
-    y=col2,
-    color="region",
-    hover_data=["country"]
-    )
-    return fig
+def scatter(plot_x, plot_y):
+    if plot_x and plot_y: 
+        fig = px.scatter(
+            full_dataset,
+            x=plot_x,
+            y=plot_y,
+            color='region', 
+            hover_data=[col for col in full_dataset.columns if col not in (plot_x, plot_y)]
+        )
+        return fig
+    else:
+        return {}
 
 
 @callback(
@@ -103,7 +130,6 @@ def scatter(col1,col2):
 )
 def cluster_and_represent(cmethod, data):
     data = pd.DataFrame.from_dict(data).dropna()
-    print(data)
     scaler = StandardScaler()
     data_scaler = scaler.fit_transform(data.drop(["country","region"], axis=1))
     clusterer = DBSCAN() if cmethod=="DBSCAN" else AffinityPropagation()
@@ -115,10 +141,6 @@ def cluster_and_represent(cmethod, data):
     hover_data=[data["country"],data["region"]]
     )
     return fig
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
