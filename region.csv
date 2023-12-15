@@ -1,244 +1,244 @@
-country
-Afghanistan
-Angola
-Albania
-Andorra
-UAE
-Argentina
-Armenia
-Antigua and Barbuda
-Australia
-Austria
-Azerbaijan
-Burundi
-Belgium
-Benin
-Burkina Faso
-Bangladesh
-Bulgaria
-Bahrain
-Bahamas
-Bosnia and Herzegovina
-Belarus
-Belize
-Bolivia
-Brazil
-Barbados
-Brunei
-Bhutan
-Botswana
-Central African Republic
-Canada
-Switzerland
-Chile
-China
-Cote d'Ivoire
-Cameroon
-"Congo, Dem. Rep."
-"Congo, Rep."
-Colombia
-Comoros
-Cape Verde
-Costa Rica
-Cuba
-Cyprus
-Czech Republic
-Germany
-Djibouti
-Dominica
-Denmark
-Dominican Republic
-Algeria
-Ecuador
-Egypt
-Eritrea
-Spain
-Estonia
-Ethiopia
-Finland
-Fiji
-France
-"Micronesia, Fed. Sts."
-Gabon
-UK
-Georgia
-Ghana
-Guinea
-Gambia
-Guinea-Bissau
-Equatorial Guinea
-Greece
-Grenada
-Guatemala
-Guyana
-"Hong Kong, China"
-Honduras
-Croatia
-Haiti
-Hungary
-Indonesia
-India
-Ireland
-Iran
-Iraq
-Iceland
-Israel
-Italy
-Jamaica
-Jordan
-Japan
-Kazakhstan
-Kenya
-Kyrgyz Republic
-Cambodia
-Kiribati
-St. Kitts and Nevis
-South Korea
-Kuwait
-Lao
-Lebanon
-Liberia
-Libya
-St. Lucia
-Liechtenstein
-Sri Lanka
-Lesotho
-Lithuania
-Luxembourg
-Latvia
-Morocco
-Moldova
-Madagascar
-Maldives
-Mexico
-Marshall Islands
-North Macedonia
-Mali
-Malta
-Myanmar
-Montenegro
-Mongolia
-Mozambique
-Mauritania
-Mauritius
-Malawi
-Malaysia
-Namibia
-Niger
-Nigeria
-Nicaragua
-Netherlands
-Norway
-Nepal
-Nauru
-New Zealand
-Oman
-Pakistan
-Panama
-Peru
-Philippines
-Palau
-Papua New Guinea
-Poland
-North Korea
-Portugal
-Paraguay
-Palestine
-Qatar
-Romania
-Russia
-Rwanda
-Saudi Arabia
-Sudan
-Senegal
-Singapore
-Solomon Islands
-Sierra Leone
-El Salvador
-Somalia
-Serbia
-South Sudan
+country,region
+Afghanistan,"Asie-Pacifique"
+Angola,Afrique
+Albania,"Europe orientale"
+Andorra,"Europe occidentale et autres"
+UAE,"Asie-Pacifique"
+Argentina,"Amérique latine et Caraïbes"
+Armenia,"Europe orientale"
+Antigua and Barbuda,"Amérique latine et Caraïbes"
+Australia,"Europe occidentale et autres"
+Austria,"Europe occidentale et autres"
+Azerbaijan,"Europe orientale"
+Burundi,Afrique
+Belgium,"Europe occidentale et autres"
+Benin,Afrique
+Burkina Faso,Afrique
+Bangladesh,"Asie-Pacifique"
+Bulgaria,"Europe orientale"
+Bahrain,"Asie-Pacifique"
+Bahamas,"Amérique latine et Caraïbes"
+Bosnia and Herzegovina,"Europe orientale"
+Belarus,"Europe orientale"
+Belize,"Amérique latine et Caraïbes"
+Bolivia,"Amérique latine et Caraïbes"
+Brazil,"Amérique latine et Caraïbes"
+Barbados,"Amérique latine et Caraïbes"
+Brunei,"Asie-Pacifique"
+Bhutan,"Asie-Pacifique"
+Botswana,Afrique
+Central African Republic,Afrique
+Canada,"Europe occidentale et autres"
+Switzerland,"Europe occidentale et autres"
+Chile,"Amérique latine et Caraïbes"
+China,"Asie-Pacifique"
+Cote d'Ivoire,Afrique
+Cameroon,Afrique
+"Congo, Dem. Rep.",Afrique
+"Congo, Rep.",Afrique
+Colombia,"Amérique latine et Caraïbes"
+Comoros,Afrique
+Cape Verde,Afrique
+Costa Rica,"Amérique latine et Caraïbes"
+Cuba,"Amérique latine et Caraïbes"
+Cyprus,"Asie-Pacifique"
+Czech Republic,"Europe occidentale et autres"
+Germany,"Europe occidentale et autres"
+Djibouti,Afrique
+Dominica,"Amérique latine et Caraïbes"
+Denmark,"Europe occidentale et autres"
+Dominican Republic,"Amérique latine et Caraïbes"
+Algeria,Afrique
+Ecuador,"Amérique latine et Caraïbes"
+Egypt,Afrique
+Eritrea,Afrique
+Spain,"Europe occidentale et autres"
+Estonia,"Europe orientale"
+Ethiopia,Afrique
+Finland,"Europe occidentale et autres"
+Fiji,"Asie-Pacifique"
+France,"Europe occidentale et autres"
+"Micronesia, Fed. Sts.","Asie-Pacifique"
+Gabon,Afrique
+UK,"Europe occidentale et autres"
+Georgia,"Europe orientale"
+Ghana,Afrique
+Guinea,Afrique
+Gambia,Afrique
+Guinea-Bissau,Afrique
+Equatorial Guinea,Afrique
+Greece,"Europe occidentale et autres"
+Grenada,"Amérique latine et Caraïbes"
+Guatemala,"Amérique latine et Caraïbes"
+Guyana,"Amérique latine et Caraïbes"
+"Hong Kong, China","Asie-Pacifique"
+Honduras,"Amérique latine et Caraïbes"
+Croatia,"Europe orientale"
+Haiti,"Amérique latine et Caraïbes"
+Hungary,"Europe orientale"
+Indonesia,"Asie-Pacifique"
+India,"Asie-Pacifique"
+Ireland,"Europe occidentale et autres"
+Iran,"Asie-Pacifique"
+Iraq,"Asie-Pacifique"
+Iceland,"Europe occidentale et autres"
+Israel,"Europe occidentale et autres"
+Italy,"Europe occidentale et autres"
+Jamaica,"Amérique latine et Caraïbes"
+Jordan,"Asie-Pacifique"
+Japan,"Asie-Pacifique"
+Kazakhstan,"Asie-Pacifique"
+Kenya,Afrique
+Kyrgyz Republic,"Asie-Pacifique"
+Cambodia,"Asie-Pacifique"
+Kiribati,"Asie-Pacifique"
+St. Kitts and Nevis,"Amérique latine et Caraïbes"
+South Korea,"Asie-Pacifique"
+Kuwait,"Asie-Pacifique"
+Lao,"Asie-Pacifique"
+Lebanon,"Asie-Pacifique"
+Liberia,Afrique
+Libya,Afrique
+St. Lucia,"Amérique latine et Caraïbes"
+Liechtenstein,"Europe occidentale et autres"
+Sri Lanka,"Asie-Pacifique"
+Lesotho,Afrique
+Lithuania,"Europe orientale"
+Luxembourg,"Europe occidentale et autres"
+Latvia,"Europe orientale"
+Morocco,Afrique
+Moldova,"Europe orientale"
+Madagascar,Afrique
+Maldives,"Asie-Pacifique"
+Mexico,"Amérique latine et Caraïbes"
+Marshall Islands,"Asie-Pacifique"
+North Macedonia,"Europe orientale"
+Mali,Afrique
+Malta,"Europe occidentale et autres"
+Myanmar,"Asie-Pacifique"
+Montenegro,"Europe orientale"
+Mongolia,"Asie-Pacifique"
+Mozambique,Afrique
+Mauritania,Afrique
+Mauritius,Afrique
+Malawi,Afrique
+Malaysia,"Asie-Pacifique"
+Namibia,Afrique
+Niger,Afrique
+Nigeria,Afrique
+Nicaragua,"Amérique latine et Caraïbes"
+Netherlands,"Europe occidentale et autres"
+Norway,"Europe occidentale et autres"
+Nepal,"Asie-Pacifique"
+Nauru,"Asie-Pacifique"
+New Zealand,"Europe occidentale et autres"
+Oman,"Asie-Pacifique"
+Pakistan,"Asie-Pacifique"
+Panama,"Amérique latine et Caraïbes"
+Peru,"Amérique latine et Caraïbes"
+Philippines,"Asie-Pacifique"
+Palau,"Asie-Pacifique"
+Papua New Guinea,"Asie-Pacifique"
+Poland,"Europe orientale"
+North Korea,"Asie-Pacifique"
+Portugal,"Europe occidentale et autres"
+Paraguay,"Amérique latine et Caraïbes"
+Palestine,"Asie-Pacifique"
+Qatar,"Asie-Pacifique"
+Romania,"Europe orientale"
+Russia,"Europe orientale"
+Rwanda,Afrique
+Saudi Arabia,"Asie-Pacifique"
+Sudan,Afrique
+Senegal,Afrique
+Singapore,"Asie-Pacifique"
+Solomon Islands,"Asie-Pacifique"
+Sierra Leone,Afrique
+El Salvador,"Amérique latine et Caraïbes"
+Somalia,Afrique
+Serbia,"Europe orientale"
+South Sudan,Afrique
 Sao Tome and Principe
-Suriname
-Slovak Republic
-Slovenia
-Sweden
-Eswatini
-Seychelles
-Syria
-Chad
-Togo
-Thailand
-Tajikistan
-Turkmenistan
-Timor-Leste
-Tonga
-Trinidad and Tobago
-Tunisia
-Turkey
-Tuvalu
-Taiwan
-Tanzania
-Uganda
-Ukraine
-Uruguay
-USA
-Uzbekistan
-St. Vincent and the Grenadines
-Venezuela
-Vietnam
-Vanuatu
-Samoa
-Yemen
-South Africa
-Zambia
-Zimbabwe
-Kosovo
-Puerto Rico
-Gibraltar
-Curaçao
-Aruba
-Anguilla
-Netherlands Antilles
-American Samoa
-Bermuda
-Czechoslovakia
-Cook Is
-Cayman Islands
-Western Sahara
-Falkland Is (Malvinas)
-Faeroe Islands
-Isle of Man
-Guadeloupe
-Greenland
-French Guiana
-Guam
-Northern Mariana Islands
-Montserrat
-Martinique
-Mayotte
-New Caledonia
-Norfolk Island
-Niue
-Pitcairn
-French Polynesia
-Reunion
-Serbia and Montenegro
-St. Helena
-San Marino
-St.-Pierre-et-Miquelon
-Turks and Caicos Islands
-Tokelau
-USSR
-British Virgin Islands
-Virgin Islands (U.S.)
-Wallis et Futuna
-Yugoslavia
-Monaco
-"Macao, China"
-Guernsey
-Holy See
-Jersey
-St. Martin (French part)
-St. Barthélemy
-Sint Maarten (Dutch part)
+Suriname,"Amérique latine et Caraïbes"
+Slovak Republic,"Europe orientale"
+Slovenia,"Europe orientale"
+Sweden,"Europe occidentale et autres"
+Eswatini,Afrique
+Seychelles,Afrique
+Syria,"Asie-Pacifique"
+Chad,Afrique
+Togo,Afrique
+Thailand,"Asie-Pacifique"
+Tajikistan,"Asie-Pacifique"
+Turkmenistan,"Asie-Pacifique"
+Timor-Leste,"Asie-Pacifique"
+Tonga,"Asie-Pacifique"
+Trinidad and Tobago,"Amérique latine et Caraïbes"
+Tunisia,Afrique
+Turkey,"Europe occidentale et autres"
+Tuvalu,"Asie-Pacifique"
+Taiwan,"Asie-Pacifique"
+Tanzania,Afrique
+Uganda,Afrique
+Ukraine,"Europe orientale"
+Uruguay,"Amérique latine et Caraïbes"
+USA,"Europe occidentale et autres"
+Uzbekistan,"Asie-Pacifique"
+St. Vincent and the Grenadines,"Amérique latine et Caraïbes"
+Venezuela,"Amérique latine et Caraïbes"
+Vietnam,"Asie-Pacifique"
+Vanuatu,"Asie-Pacifique"
+Samoa,"Asie-Pacifique"
+Yemen,"Asie-Pacifique"
+South Africa,Afrique
+Zambia,Afrique
+Zimbabwe,Afrique
+Kosovo,"Europe orientale"
+Puerto Rico,"Europe occidentale et autres"
+Gibraltar,"Europe occidentale et autres"
+Curaçao,"Europe occidentale et autres"
+Aruba,"Europe occidentale et autres"
+Anguilla,"Europe occidentale et autres"
+Netherlands Antilles,"Europe occidentale et autres"
+American Samoa,"Europe occidentale et autres"
+Bermuda,"Europe occidentale et autres"
+Czechoslovakia,"Europe orientale"
+Cook Is,"Asie-Pacifique"
+Cayman Islands,"Europe occidentale et autres"
+Western Sahara,Afrique
+Falkland Is (Malvinas),"Europe occidentale et autres"
+Faeroe Islands,"Europe occidentale et autres"
+Isle of Man,"Europe occidentale et autres"
+Guadeloupe,"Europe occidentale et autres"
+Greenland,"Europe occidentale et autres"
+French Guiana,"Europe occidentale et autres"
+Guam,"Europe occidentale et autres"
+Northern Mariana Islands,"Europe occidentale et autres"
+Montserrat,"Europe occidentale et autres"
+Martinique,"Europe occidentale et autres"
+Mayotte,"Europe occidentale et autres"
+New Caledonia,"Europe occidentale et autres"
+Norfolk Island,"Europe occidentale et autres"
+Niue,"Asie-Pacifique"
+Pitcairn,"Europe occidentale et autres"
+French Polynesia,"Europe occidentale et autres"
+Reunion,"Europe occidentale et autres"
+Serbia and Montenegro,"Europe orientale"
+St. Helena,"Europe occidentale et autres"
+San Marino,"Europe occidentale et autres"
+St.-Pierre-et-Miquelon,"Europe occidentale et autres"
+Turks and Caicos Islands,"Europe occidentale et autres"
+Tokelau,"Europe occidentale et autres"
+USSR,"Europe orientale"
+British Virgin Islands,"Europe occidentale et autres"
+Virgin Islands (U.S.),"Europe occidentale et autres"
+Wallis et Futuna,"Europe occidentale et autres"
+Yugoslavia,"Europe orientale"
+Monaco,"Europe occidentale et autres"
+"Macao, China","Asie-Pacifique"
+Guernsey,"Europe occidentale et autres"
+Holy See,"Europe occidentale et autres"
+Jersey,"Europe occidentale et autres"
+St. Martin (French part),"Europe occidentale et autres"
+St. Barthélemy,"Europe occidentale et autres"
+Sint Maarten (Dutch part),"Europe occidentale et autres"
