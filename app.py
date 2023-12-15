@@ -2,10 +2,25 @@ from dash import Dash, html, dash_table, dcc, callback, Output, Input, State, ct
 import dash_ag_grid as dag
 import plotly.express as px
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import DBSCAN,AffinityPropagation
+from sklearn.decomposition import PCA
+
 
 # Incorporate data
 full_dataset = pd.read_csv('full_dataset.csv')
 columns = full_dataset.columns.tolist()
+
+# Clean the data
+def convertir_number(x):
+    if isinstance(x,str) and 'µ' in x:
+        return float(x.replace('µ','')) * 1e-6
+    elif isinstance(x,str) and 'k' in x:
+        return float(x.replace('k','')) * 1e3
+    else:
+        return float(x)
+
+full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])] = full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])].applymap(convertir_number)
 
 # Initialize the app
 app = Dash(__name__)
@@ -13,7 +28,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [   
-        html.Div(children='Quoi le feur'),
+        html.Div(children='Quoi la fure'),
         html.Hr(),
         html.Label('Sélectionnez les colonnes à afficher :'),
         dcc.Dropdown(
@@ -26,6 +41,11 @@ app.layout = html.Div(
         dcc.Textarea(id="col2"),
         html.Button('Mettre à jour', id='update-button', n_clicks=0), 
         html.Button('Réinitialiser', id='reset-button', n_clicks=0),
+        dcc.RadioItems(
+            id = "clusteringmethod",
+            options=['AffinityPropagation','DBSCAN'],
+            value='AffinityPropagation',
+            inline=True),
         dag.AgGrid(
             id="test",
             columnDefs=[{"field": i} for i in full_dataset.columns],
@@ -35,6 +55,7 @@ app.layout = html.Div(
             dashGridOptions={"pagination": False},
             style={"height": 265}),
         dcc.Graph(id="scatterplot"),
+        dcc.Graph(id="clusterplot"),
     ],
     style={"margin": 20},
 )
@@ -73,6 +94,31 @@ def scatter(col1,col2):
     hover_data=["country"]
     )
     return fig
+
+
+@callback(
+    Output("clusterplot", "figure"),
+    Input("clusteringmethod","value"),
+    Input("test","rowData")
+)
+def cluster_and_represent(cmethod, data):
+    data = pd.DataFrame.from_dict(data).dropna()
+    print(data)
+    scaler = StandardScaler()
+    data_scaler = scaler.fit_transform(data.drop(["country","region"], axis=1))
+    clusterer = DBSCAN() if cmethod=="DBSCAN" else AffinityPropagation()
+    clustering = clusterer.fit(data_scaler)
+    pca = PCA(n_components=2)
+    data_pca = pca.fit_transform(data_scaler)
+    fig = px.scatter(data_pca,
+    color=clustering.labels_,
+    hover_data=[data["country"],data["region"]]
+    )
+    return fig
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
