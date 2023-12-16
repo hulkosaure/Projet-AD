@@ -1,5 +1,7 @@
 from dash import Dash, html, dash_table, dcc, callback, Output, Input, State, ctx
 import dash_ag_grid as dag
+import dash_daq as daq
+
 import plotly.express as px
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -87,6 +89,7 @@ app.layout = html.Div(
                             options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
                             value='AffinityPropagation',
                             inline=True),
+                        html.Div(id="dbscan_parameters", children=[]),
                         dcc.Graph(id="clusterplot"),  # regler problem, need country et region to clusteriser
                         dcc.Graph(id="clusterplot3d"),
                     ])
@@ -165,6 +168,43 @@ def cluster_and_represent(cmethod, data):
         hover_data=[data["country"],data["region"]]
     )
     return fig, fig3d
+
+
+@callback(
+    Output("dbscan_parameters","children"),
+    Input("clusteringmethod","value")
+)
+def display_dbscan_param(clusteringmethod):
+    """
+    Afficher le choix des paramètres pour DBSCAN si DBSCAN est la méthode choisit.
+    """
+    if clusteringmethod == "DBSCAN":
+        return [
+            daq.NumericInput(id="esp",
+                value=0.5,
+                label = "Distance maximum entre deux points pour être considéré comme voisin (float)"),
+            daq.NumericInput(id="min_samples",
+                value=5,
+                label = "Nombre minumum de point par cluster (int)")
+        ]
+    else:
+        return []
+
+@callback(
+    Output("min_samples","value"),
+    Input("min_samples","value")
+)
+def check_int_value(val):
+    """
+    Vérifie si la valeur mise pour min_samples (DBSCAN) est entière.
+        S'il est possible de la convertir, la convertit, sinon remet la valeur par défaut (5)
+    """
+    try:
+        int_value = int(val)
+        return int_value
+    except ValueError:
+        return 5  # si la valeur mise n'est pas un entier, alors la valeur par défaut 5 est mise
+
 
 if __name__ == "__main__":
     app.run(debug=True)
