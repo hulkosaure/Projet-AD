@@ -88,7 +88,6 @@ app.layout = html.Div(
                             value='AffinityPropagation',
                             inline=True),
                         dcc.Graph(id="clusterplot"),  # regler problem, need country et region to clusteriser
-                        html.Div("té"),
                         dcc.Graph(id="clusterplot3d"),
                     ])
                 ]),
