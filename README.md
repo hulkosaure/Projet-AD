@@ -36,7 +36,13 @@ Détail de chaque métrique
 **hdi_human_development_index** :  
 **percentage_women_in_national_parliaments** :  
 **sex_ratio_all_age_groups** :  
-**gini_inegalite_de_repartition** :  
+**gini_inegalite_de_repartition** : Indice de Gini, quantifie les inégalités de répartitions des richesses. Il séchelonne de 0 (égalité parfaite) à 1 (inégalités extrêmes).  
+
+Il est égal à 0 dans une situation d'égalité parfaite où la variable prend une valeur identique sur l’ensemble de la population. À l'autre extrême, il est égal à 1 dans la situation la plus inégalitaire possible, où la variable vaut 0 sur toute la population à l’exception d’un seul individu. .
+
+Les inégalités ainsi mesurées peuvent porter sur des variables de revenus, de salaires, de niveau de vie,etc.
+
+
 **sustainable_developement_index** : Indice de développement durable. Il présente l'efficacité mesurée d'un pays à promouvoir le développement humain de manière écologique .Il est calculé comme le rapport entre l'indice de développement humain et l'impact écologique (dépassement de la consommation de ressources par personne du quota alloué en tenant compte de la production annuelle de ressourcees de la planète)  
 **co2_emissions_tonnes_per_person** :  
 **revenu_moyen_menage** :  
