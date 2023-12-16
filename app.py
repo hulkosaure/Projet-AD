@@ -84,6 +84,12 @@ app.layout = html.Div(
                         dcc.Graph(id="scatterplot"),
                     ]),
                     dcc.Tab(label="Clustering et ACP",id="cluster",children=[
+                        html.Label('Ceci est un test :'),
+                        dcc.Dropdown(
+                            id='analysed_data',
+                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                            multi=True,
+                            ),
                         dcc.RadioItems(
                             id = "clusteringmethod",
                             options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
@@ -91,13 +97,19 @@ app.layout = html.Div(
                             inline=True),
                         html.Div(id="dbscan_parameters", children=[
                             daq.NumericInput(id="esp",
-                                value=0.5,
+                                value = 0.5,
+                                size = 60,
+                                min = 0,
+                                max = 50,
                                 label = "Distance maximum entre deux points pour être considéré comme voisin (float)"),
                             daq.NumericInput(id="min_samples",
-                                value=5,
+                                value = 5,
+                                size = 60,
+                                min = 0,
+                                max = 50,
                                 label = "Nombre minumum de point par cluster (int)")
                         ]),
-                        dcc.Graph(id="clusterplot"),  # regler problem, need country et region to clusteriser
+                        dcc.Graph(id="clusterplot"), 
                         dcc.Graph(id="clusterplot3d"),
                     ])
                 ]),
@@ -117,8 +129,13 @@ app.layout = html.Div(
     State('column-dropdown', 'value')
 )
 
+
 def update_data(update_clicks, reset_clicks, selected_columns):
     changed_id = [p['prop_id'] for p in ctx.triggered][0]
+    
+    # Ajout des colonnes 'country' et 'region' en premier dans la sélection
+    selected_columns = list(set(selected_columns + ['country', 'region']))
+    
     if 'reset-button' in changed_id and reset_clicks > 0:
         updated_column_defs = [{"field": i} for i in full_dataset.columns]
         updated_data = full_dataset.to_dict('records')
@@ -127,13 +144,19 @@ def update_data(update_clicks, reset_clicks, selected_columns):
         updated_column_defs = [{"field": col} for col in selected_columns]
         updated_data = full_dataset[selected_columns].to_dict('records')
         dropdown_value = selected_columns
+    
+    updated_column_defs.sort(key=lambda x: 1 if x['field'] in ['country', 'region'] else 0, reverse=True)
+    
     return updated_column_defs, updated_data, dropdown_value
+
 
 @callback(
     Output("scatterplot", "figure"),
     Input("plot_x", "value"),
     Input("plot_y", "value")
 )
+
+
 def scatter(plot_x, plot_y):
     if plot_x and plot_y: 
         fig = px.scatter(
@@ -150,32 +173,38 @@ def scatter(plot_x, plot_y):
 
 @callback(
     Output("clusterplot", "figure"),
-    Output("clusterplot3d","figure"),
-    Input("clusteringmethod","value"),
-    Input("test","rowData"),
-    Input("esp","value"),
-    Input("min_samples","value")
+    Output("clusterplot3d", "figure"),
+    Input("clusteringmethod", "value"),
+    Input("test", "rowData"),
+    State("analysed_data", "value")
 )
-def cluster_and_represent(cmethod, data, esp, min_samples):
+def cluster_and_represent(cmethod, data, selected_columns):
     data = pd.DataFrame.from_dict(data).dropna()
+    data_selected = data[selected_columns]
+    
     scaler = StandardScaler()
-    data_scaler = scaler.fit_transform(data.drop(["country","region"], axis=1))
-    clusterer = DBSCAN(eps = esp, min_samples = min_samples) if cmethod=="DBSCAN" else AffinityPropagation()
+    data_scaler = scaler.fit_transform(data_selected)
+    
+    clusterer = DBSCAN() if cmethod == "DBSCAN" else AffinityPropagation()
     clustering = clusterer.fit(data_scaler)
+    
     pca = PCA(n_components=2)
     pca3d = PCA(n_components=3)
     data_pca = pca.fit_transform(data_scaler)
     data_pca_3d = pca3d.fit_transform(data_scaler)
-    fig = px.scatter(data_pca,
+    
+    fig = px.scatter(
+        data_pca,
         color=clustering.labels_,
-        hover_data=[data["country"],data["region"]]
+        hover_data=[data["country"], data["region"]]
     )
-    print(data_pca_3d)
+    
     fig3d = px.scatter_3d(
         data_pca_3d, x=0, y=1, z=2,
         color=clustering.labels_,
-        hover_data=[data["country"],data["region"]]
+        hover_data=[data["country"], data["region"]]
     )
+    
     return fig, fig3d
 
 
@@ -183,10 +212,14 @@ def cluster_and_represent(cmethod, data, esp, min_samples):
     Output("dbscan_parameters","style"),
     Input("clusteringmethod","value")
 )
+
+
 def display_dbscan_param(clusteringmethod):
     """
     Afficher le choix des paramètres pour DBSCAN si DBSCAN est la méthode choisit.
     """
+
+
 def display_dbscan_param(clusteringmethod):
     """
     Afficher le choix des paramètres pour DBSCAN si DBSCAN est la méthode choisit.
@@ -200,6 +233,8 @@ def display_dbscan_param(clusteringmethod):
     Output("min_samples","value"),
     Input("min_samples","value")
 )
+
+
 def check_int_value(val):
     """
     Vérifie si la valeur mise pour min_samples (DBSCAN) est entière.
