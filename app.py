@@ -89,7 +89,14 @@ app.layout = html.Div(
                             options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
                             value='AffinityPropagation',
                             inline=True),
-                        html.Div(id="dbscan_parameters", children=[]),
+                        html.Div(id="dbscan_parameters", children=[
+                            daq.NumericInput(id="esp",
+                                value=0.5,
+                                label = "Distance maximum entre deux points pour être considéré comme voisin (float)"),
+                            daq.NumericInput(id="min_samples",
+                                value=5,
+                                label = "Nombre minumum de point par cluster (int)")
+                        ]),
                         dcc.Graph(id="clusterplot"),  # regler problem, need country et region to clusteriser
                         dcc.Graph(id="clusterplot3d"),
                     ])
@@ -145,13 +152,15 @@ def scatter(plot_x, plot_y):
     Output("clusterplot", "figure"),
     Output("clusterplot3d","figure"),
     Input("clusteringmethod","value"),
-    Input("test","rowData")
+    Input("test","rowData"),
+    Input("esp","value"),
+    Input("min_samples","value")
 )
-def cluster_and_represent(cmethod, data):
+def cluster_and_represent(cmethod, data, esp, min_samples):
     data = pd.DataFrame.from_dict(data).dropna()
     scaler = StandardScaler()
     data_scaler = scaler.fit_transform(data.drop(["country","region"], axis=1))
-    clusterer = DBSCAN() if cmethod=="DBSCAN" else AffinityPropagation()
+    clusterer = DBSCAN(eps = esp, min_samples = min_samples) if cmethod=="DBSCAN" else AffinityPropagation()
     clustering = clusterer.fit(data_scaler)
     pca = PCA(n_components=2)
     pca3d = PCA(n_components=3)
@@ -171,24 +180,21 @@ def cluster_and_represent(cmethod, data):
 
 
 @callback(
-    Output("dbscan_parameters","children"),
+    Output("dbscan_parameters","style"),
     Input("clusteringmethod","value")
 )
 def display_dbscan_param(clusteringmethod):
     """
     Afficher le choix des paramètres pour DBSCAN si DBSCAN est la méthode choisit.
     """
+def display_dbscan_param(clusteringmethod):
+    """
+    Afficher le choix des paramètres pour DBSCAN si DBSCAN est la méthode choisit.
+    """
     if clusteringmethod == "DBSCAN":
-        return [
-            daq.NumericInput(id="esp",
-                value=0.5,
-                label = "Distance maximum entre deux points pour être considéré comme voisin (float)"),
-            daq.NumericInput(id="min_samples",
-                value=5,
-                label = "Nombre minumum de point par cluster (int)")
-        ]
+        return {'display': 'block'}
     else:
-        return []
+        return {'display': 'none'}
 
 @callback(
     Output("min_samples","value"),
