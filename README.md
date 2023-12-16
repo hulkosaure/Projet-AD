@@ -1,5 +1,7 @@
 # Présentation
-blabla dashboard projet analyse de données python pedro adrifeur blabla
+Ce dashboard a été conçu dans le cadre d'un projet pour l'UE Analyse de Données du master 2 de bioinformatique à l'université Claude Bernard Lyon 1.
+En gros ça permet de visualiser des données qu'on a choisies un peu au pif, de faire une clusterisation dessus et de visualiser les résultats à l'aide d'une analyse en composantes principales.  
+jsp quoi dire de plus.  
 
 # Installation des dépendances et mise en route
 Toutes les libraires nécessaires au fonctionnement du dashboard sont répertoriées dans le fichier requirements.txt.  
