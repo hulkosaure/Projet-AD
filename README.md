@@ -28,7 +28,7 @@ Détail de chaque métrique
 **personal_computers_per_100_people** : Nombre d'ordinateurs par personne (2005)  
 **consumption_emission_cap** :  
 **menace_changement_climatique** : Pourcentage de personnes qui considèrent le changement climatique comme véritablement dangereux  
-**child_mortality_0_5_year_olds_dying_per_1000_born** : mortalité infantile (2022)  
+**child_mortality_0_5_year_olds_dying_per_1000_born** : Mortalité infantile pour 1000 naissances (2022)  
 **forest_coverage_percent** :  Pourcentage de la surface du territoire national occupée par des forêts  
 **corruption_perception_index_cpi** :  Indice de perception de la corruption  dans le secteur public (Transparency International)  
 **energy_production_per_person**: Productions des différentes formes d'énergie primaire et d'électricité primaire converties en tonnes équivalent pétrole.  
