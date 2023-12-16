@@ -39,7 +39,7 @@ Détail de chaque métrique
 **gini_inegalite_de_repartition** : Indice de Gini, quantifie ici les inégalités de répartition des richesses. Il s'échelonne de 0 (égalité parfaite) à 1 (inégalités extrêmes).   
 **sustainable_developement_index** : Indice de développement durable. Il présente l'efficacité mesurée d'un pays à promouvoir le développement humain de manière écologique .Il est calculé comme le rapport entre l'indice de développement humain et l'impact écologique (dépassement de la consommation de ressources par personne du quota alloué en tenant compte de la production annuelle de ressourcees de la planète)  
 **co2_emissions_tonnes_per_person** :  
-**revenu_moyen_menage** :  
+**revenu_moyen_menage** : Revenu moyen d'un ménage, extrapolé jusqu'en 2100
 
 
 
