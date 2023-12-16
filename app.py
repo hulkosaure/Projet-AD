@@ -8,7 +8,7 @@ from sklearn.decomposition import PCA
 
 
 # Incorporate data
-full_dataset = pd.read_csv('full_dataset.csv')
+full_dataset = pd.read_csv('data/full_dataset.csv')
 columns = full_dataset.columns.tolist()
 
 # Clean the data
