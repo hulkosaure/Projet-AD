@@ -2,7 +2,9 @@ from dash import Dash, html, dash_table, dcc, callback, Output, Input, State, ct
 import dash_ag_grid as dag
 import dash_daq as daq
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import DBSCAN,AffinityPropagation
 from sklearn.decomposition import PCA
@@ -205,16 +207,26 @@ def cluster_and_represent(cmethod, esp, min_samples, selected_columns):
     data_pca = pca.fit_transform(data_scaler)
     data_pca_3d = pca3d.fit_transform(data_scaler)
 
+    print(type(clustering.labels_))
+
+    data_pca= pd.DataFrame(data_pca, columns=["PC1","PC2"])
+    data_pca['cluster_labels'] = clustering.labels_
     # Plots
-    fig = px.scatter(data_pca, x=0, y=1,
-        color=clustering.labels_,
-        hover_data=[country,region]
-    )
+    fig = go.Figure(data=go.Scatter(x=data_pca["PC1"], y=data_pca["PC2"],
+        mode="markers",
+        marker=dict(color=data_pca["cluster_labels"]),
+        text=country,
+        hovertemplate="<b>%{text}</b><br><br>" +
+                    "Cluster: %{marker.color}<br>" +
+                    "<extra></extra>",
+    ))
     fig3d = px.scatter_3d(
         data_pca_3d, x=0, y=1, z=2,
         color=clustering.labels_,
         hover_data=[country,region]
     )
+    fig.update_layout(showlegend=False)
+    print(fig.layout) 
     return fig, fig3d
 
 
