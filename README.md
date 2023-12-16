@@ -21,3 +21,4 @@ Country : Nom du pays
 Region : Groupe d'appartenance dans la classification des groupes régionaux des Nations Unies
 personal_computers_per_100_people : Nombre d'ordinateurs par personne (2005)
 consumption_emission_cap:
+menace_changement_climatique : Pourcentage de personnes qqui considèrent le changement climatique comme véritablement dangereux
