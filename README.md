@@ -12,6 +12,10 @@ Le dashboard est lancé avec la ligne de commande `python app.py` ou `python3 ap
 
 # Esplication du dashboard
 ~~feur~~  
+L'onglet Analyse permet de visualliser les données. L'utilisatuer peut choisir les colonnes à afficher ou masquer dans le cadre situé au dessus du tableau de données.  
+L'onglet Nuage de points entre deux métriques, situé en dessous du tableau de données permet de choisir librement deux colonnes du tableau pour créer un nuage de points. Les points sont colorés en fonction de la région du pays selon les groupes régionaux des Nations Unies.  
+L'onglet Clustering et ACP permet à l'utilisateur de sélectionner plusieurs colonnes de son choix et d'appliquer des méthodes d'apprentissage non-supervisé, en choisissant les paramètres. Une ACP est ensuite effectuée sur les résultats pour permettre une visualisation dans l'espace des clusters détectés.  
+
 # Dataset  
 Notre jeu de données est issu de la fusion de plusieurs jeux de données simples téléchargés sur Gapminder.  FREE DATA FROM WORLD BANK VIA GAPMINDER.ORG, CC-BY LICENSE  
 Pour le choix des colonnes, nous avons chacun de notre côté sélectionné plusieurs jeux de données qui nous semblaient intéressants, puis nous avons mis nos choix en commun et procédé à un nettoyage des données. Certaines données n'étaient pas disponibles pour près de la moitié des pays (décès liés à des accidents de voiture), et certains pays ne présentaient que très peu de données par rapport au nombre total de métriques sélectionnées (Vatican, autres exemples de petites iles): dans les deux cas, nous avons fait le choix de supprimer les données.  
