@@ -17,23 +17,23 @@ Les pays ont été attribués à différents régions selon la classification de
 
 L'ensemble des données utilisées est disponible dans le répertoire data.  
 Détail de chaque métrique
-*Country* : Nom du pays
-*Region* : Groupe d'appartenance dans la classification des groupes régionaux des Nations Unies
-*personal_computers_per_100_people* : Nombre d'ordinateurs par personne (2005)
-*consumption_emission_cap* :
-*menace_changement_climatique* : Pourcentage de personnes qui considèrent le changement climatique comme véritablement dangereux
-*child_mortality_0_5_year_olds_dying_per_1000_born* : mortalité infantile (2022)
-*forest_coverage_percent* :  Pourcentage de la surface du territoire national occupée par des forêts
-*corruption_perception_index_cpi* :  Indice de perception de la corruption  dans le secteur public (Transparency International)
-*energy_production_per_person*: 
-*energy_use_per_person* :
-*hdi_human_development_index* :
-*percentage_women_in_national_parliaments* :
-*sex_ratio_all_age_groups* :
-*gini_inegalite_de_repartition* :
-*sustainable_developement_index* :
-*co2_emissions_tonnes_per_person* :
-*revenu_moyen_menage* :
+**Country** : Nom du pays  
+**Region** : Groupe d'appartenance dans la classification des groupes régionaux des Nations Unies  
+**personal_computers_per_100_people** : Nombre d'ordinateurs par personne (2005)  
+**consumption_emission_cap** :  
+**menace_changement_climatique** : Pourcentage de personnes qui considèrent le changement climatique comme véritablement dangereux  
+**child_mortality_0_5_year_olds_dying_per_1000_born** : mortalité infantile (2022)  
+**forest_coverage_percent** :  Pourcentage de la surface du territoire national occupée par des forêts  
+**corruption_perception_index_cpi** :  Indice de perception de la corruption  dans le secteur public (Transparency International)  
+**energy_production_per_person**:   
+**energy_use_per_person** :  
+**hdi_human_development_index** :  
+**percentage_women_in_national_parliaments** :  
+**sex_ratio_all_age_groups** :  
+**gini_inegalite_de_repartition** :  
+**sustainable_developement_index** : Indice de développement durable. Il présente l'efficacité mesurée d'un pays à promouvoir le développement humain de manière écologique .Il est calculé comme le rapport entre l'indice de développement humain et l'impact écologique (dépassement de la consommation de ressources par personne du quota alloué en tenant compte de la production annuelle de ressourcees de la planète)  
+**co2_emissions_tonnes_per_person** :  
+**revenu_moyen_menage** :  
 
 
 
