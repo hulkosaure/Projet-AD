@@ -88,6 +88,8 @@ app.layout = html.Div(
                             value='AffinityPropagation',
                             inline=True),
                         dcc.Graph(id="clusterplot"),  # regler problem, need country et region to clusteriser
+                        html.Div("té"),
+                        dcc.Graph(id="clusterplot3d"),
                     ])
                 ]),
             ])
@@ -139,6 +141,7 @@ def scatter(plot_x, plot_y):
 
 @callback(
     Output("clusterplot", "figure"),
+    Output("clusterplot3d","figure"),
     Input("clusteringmethod","value"),
     Input("test","rowData")
 )
@@ -149,12 +152,20 @@ def cluster_and_represent(cmethod, data):
     clusterer = DBSCAN() if cmethod=="DBSCAN" else AffinityPropagation()
     clustering = clusterer.fit(data_scaler)
     pca = PCA(n_components=2)
+    pca3d = PCA(n_components=3)
     data_pca = pca.fit_transform(data_scaler)
+    data_pca_3d = pca3d.fit_transform(data_scaler)
     fig = px.scatter(data_pca,
-    color=clustering.labels_,
-    hover_data=[data["country"],data["region"]]
+        color=clustering.labels_,
+        hover_data=[data["country"],data["region"]]
     )
-    return fig
+    print(data_pca_3d)
+    fig3d = px.scatter_3d(
+        data_pca_3d, x=0, y=1, z=2,
+        color=clustering.labels_,
+        hover_data=[data["country"],data["region"]]
+    )
+    return fig, fig3d
 
 if __name__ == "__main__":
     app.run(debug=True)
