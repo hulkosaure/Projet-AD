@@ -28,57 +28,71 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [   
-        html.Div(children='Quoi le feur'),
-        html.Hr(),
-        html.Label('Sélectionnez les colonnes à afficher :'),
-        dcc.Dropdown(
-        id='column-dropdown',
-        options=[{'label': col, 'value': col} for col in full_dataset.columns],
-        multi=True,
-        value=full_dataset.columns,
-        ),
-        html.Button('Mettre à jour', id='update-button', n_clicks=0), 
-        html.Button('Réinitialiser', id='reset-button', n_clicks=0),
-        dag.AgGrid(
-            id="test",
-            columnDefs=[{"field": i} for i in full_dataset.columns],
-            rowData=full_dataset.to_dict("records"),
-            columnSize="autoSize",
-            defaultColDef={"resizable": True, "sortable": True, "filter": True},
-            dashGridOptions={"pagination": False},
-            style={"height": 265}),
-        html.Div(
-            [
-                html.Div(
-                    [
-                        html.Label('Abscisses:'),
-                        dcc.Dropdown(
-                            id='plot_x',
-                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
-                        ),
-                    ],
-                    style={'flex': '50%', 'padding': '5px'}
+        html.H1("Étude de différentes métriques sur les pays"),
+        dcc.Tabs(id="general_tabs", value="t1", children=[
+            dcc.Tab(label="Présentation", value="t1", children=[
+                html.Div(children="présentation (à faire)")
+            ]),
+            dcc.Tab(label="Analyse", value="t2", children=[
+                html.Label('Sélectionnez les colonnes à afficher :'),
+                dcc.Dropdown(
+                id='column-dropdown',
+                options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                multi=True,
+                value=full_dataset.columns,
                 ),
-                html.Div(
-                    [
-                        html.Label('Ordonnées:'),
-                        dcc.Dropdown(
-                            id='plot_y',
-                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                html.Button('Mettre à jour', id='update-button', n_clicks=0), 
+                html.Button('Réinitialiser', id='reset-button', n_clicks=0),
+                dag.AgGrid(
+                    id="test",
+                    columnDefs=[{"field": i} for i in full_dataset.columns],
+                    rowData=full_dataset.to_dict("records"),
+                    columnSize="autoSize",
+                    defaultColDef={"resizable": True, "sortable": True, "filter": True},
+                    dashGridOptions={"pagination": False},
+                    style={"height": 265}),
+                html.Hr(),
+                dcc.Tabs(id="which_plot", value="scatter", children=[
+                    dcc.Tab(label="Nuage de point entre deux métriques",id="scatter", children=[
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        html.Label('Abscisses:'),
+                                        dcc.Dropdown(
+                                            id='plot_x',
+                                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                                        ),
+                                    ],
+                                    style={'flex': '50%', 'padding': '5px'}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Label('Ordonnées:'),
+                                        dcc.Dropdown(
+                                            id='plot_y',
+                                            options=[{'label': col, 'value': col} for col in full_dataset.columns],
+                                        ),
+                                    ],
+                                    style={'flex': '50%', 'padding': '5px'}
+                                ),
+                            ],
+                            style={'display': 'flex'}
                         ),
-                    ],
-                    style={'flex': '50%', 'padding': '5px'}
-                ),
-            ],
-            style={'display': 'flex'}
-        ),
-        dcc.Graph(id="scatterplot"),
-        dcc.RadioItems(
-            id = "clusteringmethod",
-            options=['AffinityPropagation','DBSCAN'],
-            value='AffinityPropagation',
-            inline=True),
-        dcc.Graph(id="clusterplot"),
+                        dcc.Graph(id="scatterplot"),
+                    ]),
+                    dcc.Tab(label="Clustering et ACP",id="cluster",children=[
+                        dcc.RadioItems(
+                            id = "clusteringmethod",
+                            options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
+                            value='AffinityPropagation',
+                            inline=True),
+                        dcc.Graph(id="clusterplot"),  # regler problem, need country et region to clusteriser
+                    ])
+                ]),
+            ])
+        ]),
+
     ],
     style={"margin": 20},
 )
