@@ -1,7 +1,7 @@
 à faire (écrire la meme chose que l'onglet présentation je pense)
 # Installation des dépendances
 Toutes les libraires nécessaire au fonctionnement du dashboard sont répertoriées dans le fichier requirements.txt
-Elles peuvent être installées automatiquement avec la commande :
+Elles peuvent être installées automatiquement avec la commande :  
 `pip install-r requirements.txt`
 
 # Dataset
