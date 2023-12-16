@@ -25,7 +25,7 @@ Détail de chaque métrique
 **child_mortality_0_5_year_olds_dying_per_1000_born** : mortalité infantile (2022)  
 **forest_coverage_percent** :  Pourcentage de la surface du territoire national occupée par des forêts  
 **corruption_perception_index_cpi** :  Indice de perception de la corruption  dans le secteur public (Transparency International)  
-**energy_production_per_person**: Production totale d'énergie d'un pays sur une année de toutes les formes d'énergie primaire converties en tonnes de pétrole et divisé par le nombre d'habitants du pays.
+**energy_production_per_person**: Productions des différentes formes d'énergie primaire et d'électricité primaire converties en tonnes équivalent pétrole.  
 **energy_use_per_person** :  
 **hdi_human_development_index** :  
 **percentage_women_in_national_parliaments** :  
