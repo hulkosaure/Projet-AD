@@ -91,13 +91,14 @@ app.layout = html.Div(
                         dcc.Graph(id="scatterplot"),
                     ]),
                     dcc.Tab(label="Clustering et ACP",id="cluster",children=[
-                        html.Label('Ceci est un test :'),
+                        html.Label('Selectionner les colonnes voulus pour le clustering puis l\'ACP :'),
                         dcc.Dropdown(
                             id='analysed_data',
                             options=[{'label': col, 'value': col} for col in numeric_columns],
                             multi=True,
                             value=numeric_columns
                             ),
+                        html.Label('Méthode de clustering :'),
                         dcc.RadioItems(
                             id = "clusteringmethod",
                             options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
@@ -250,8 +251,16 @@ def cluster_and_represent(cmethod, esp, min_samples, selected_columns):
                     "Cluster: %{customdata}<br>" +
                     "<extra></extra>",
     )])
-    fig.update_layout(showlegend=False)
-    fig3d.update_layout(showlegend=False)
+    fig.update_layout(showlegend=False,
+        xaxis_title="Première composante",
+        yaxis_title="Seconde composante",
+        title="Visualisation des axes de l'ACP à 2 dimensions (variance expliquée : "+str(pca.explained_variance_ratio_.sum()*100)+")")
+    fig3d.update_layout(showlegend=False,
+        scene = dict(
+                    xaxis_title='Première composante',
+                    yaxis_title='Deuxième composante',
+                    zaxis_title='Troisième composante'),
+        title="Visualisation des axes de l'ACP à 3 dimensions (variance expliquée : "+str(pca3d.explained_variance_ratio_.sum()*100)+")")
     return fig, fig3d
 
 
