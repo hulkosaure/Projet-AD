@@ -45,17 +45,4 @@ Détail de chaque métrique :
 **co2_emissions_tonnes_per_person_2018** : Émissions de carbone dues à la combustion d'énergies fossiles (2018)c .  
 **revenu_moyen_menage_2022** : Revenu moyen d'un ménage (2022).  
 
-La compilation des données brutes de Gapminder et une partie du preprocessing est disponible dans le jupyter notebook [`./make_full_dataset.ipynb`](./make_full_dataset.ipynb).
-
-
-
-
-
-
-
-
-
-
-
-
-7
+La compilation des données brutes de Gapminder et une partie du preprocessing est disponible dans le jupyter notebook [`./make_full_dataset.ipynb`](./make_full_dataset.ipynb)
