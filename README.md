@@ -22,17 +22,17 @@ Pour le choix des colonnes, nous avons chacun de notre côté sélectionné plus
 Les pays ont été attribués à différents régions selon la classification des groupes régionaux des Nations Unies.
 
 L'ensemble des données utilisées est disponible dans le répertoire data.  
-Détail de chaque métrique
+Détail de chaque métrique :   
 **Country** : Nom du pays.  
 **Region** : Groupe d'appartenance dans la classification des groupes régionaux des Nations Unies.  
 **personal_computers_per_100_people** : Nombre d'ordinateurs par personne (2005).  
-**consumption_emission_cap** :  
+**consumption_emission_cap** : Les émissions de consommation pour un pays divisées par sa population en tonnes de CO2 par habitant.  
 **menace_changement_climatique** : Part de la population qui considèrent le changement climatique comme véritablement dangereux.  
 **child_mortality_0_5_year_olds_dying_per_1000_born** : Mortalité infantile pour 1000 naissances (2022).  
-**forest_coverage_percent** :  Part du territoire national occupée par des forêts.  
-**corruption_perception_index_cpi** :  Indice de perception de la corruption  dans le secteur public (Transparency International).  
+**forest_coverage_percent** : Part du territoire national occupée par des forêts.  
+**corruption_perception_index_cpi** : Indice de perception de la corruption  dans le secteur public (Transparency International).  
 **energy_production_per_person**: Productions des différentes formes d'énergie primaire et d'électricité primaire converties en tonnes équivalent pétrole.  
-**energy_use_per_person** :  
+**energy_use_per_person** : Utilisation d'énergie par habitant dans un pays.  
 **hdi_human_development_index** : Indice de développement humain du pays.  
 **percentage_women_in_national_parliaments** : Pourcentage de sièges occupés par des femmes au parlement national.  
 **sex_ratio_all_age_groups** : Nomnbre d'hommes pour 100 femmes, en prenant en compte toutes les tranches d'âge d'une population.  
