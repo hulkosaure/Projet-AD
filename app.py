@@ -71,6 +71,7 @@ app.layout = html.Div(
                                         html.Label('Abscisses:'),
                                         dcc.Dropdown(
                                             id='plot_x',
+                                            value = "revenu_moyen_menage_2022",
                                             options=[{'label': col, 'value': col} for col in full_dataset.columns],
                                         ),
                                     ],
@@ -81,6 +82,7 @@ app.layout = html.Div(
                                         html.Label('Ordonnées:'),
                                         dcc.Dropdown(
                                             id='plot_y',
+                                            value = "child_mortality_0_5_year_olds_dying_per_1000_born_2022",
                                             options=[{'label': col, 'value': col} for col in full_dataset.columns],
                                         ),
                                     ],
