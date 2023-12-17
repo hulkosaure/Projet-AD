@@ -210,10 +210,12 @@ def cluster_and_represent(cmethod, esp, min_samples, selected_columns):
     data_pca = pca.fit_transform(data_scaler)
     data_pca_3d = pca3d.fit_transform(data_scaler)
 
-    print(type(clustering.labels_))
-
     data_pca= pd.DataFrame(data_pca, columns=["PC1","PC2"])
     data_pca['cluster_labels'] = clustering.labels_
+
+    data_pca_3d= pd.DataFrame(data_pca_3d, columns=["PC1","PC2","PC3"])
+    data_pca_3d['cluster_labels'] = clustering.labels_
+
     # Plots
     fig = go.Figure(data=go.Scatter(x=data_pca["PC1"], y=data_pca["PC2"],
         mode="markers",
@@ -223,13 +225,16 @@ def cluster_and_represent(cmethod, esp, min_samples, selected_columns):
                     "Cluster: %{marker.color}<br>" +
                     "<extra></extra>",
     ))
-    fig3d = px.scatter_3d(
-        data_pca_3d, x=0, y=1, z=2,
-        color=clustering.labels_,
-        hover_data=[country,region]
-    )
+    fig3d = go.Figure(data=[go.Scatter3d(x=data_pca_3d["PC1"], y=data_pca_3d["PC2"], z=data_pca_3d["PC3"],
+        mode="markers",
+        marker=dict(color=data_pca_3d["cluster_labels"]),
+        text=country,
+        hovertemplate="<b>%{text}</b><br><br>" +
+                    "Cluster: %{marker.color}<br>" +
+                    "<extra></extra>",
+    )])
     fig.update_layout(showlegend=False)
-    print(fig.layout) 
+    fig3d.update_layout(showlegend=False)
     return fig, fig3d
 
 
