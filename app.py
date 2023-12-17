@@ -163,12 +163,31 @@ app.layout = html.Div(
     Input('stat_group','value')
 )
 def compute_desc_stat(metric, group):
+    dico = {
+        "country" : "Pays",
+        "region" : "Région",
+        "co2_emissions_tonnes_per_person_2018" : "Émissions de carbone",
+        "consumption_emission_cap_2022" : "Émissions liées à la consommation par habitant",
+        "corruption_perception_index_cpi_2017" : "Indice de perception de la corruption",
+        "energy_production_per_person_2009" : "Région",
+        "energy_use_per_person_2014" : "Utilisation d'énergie par habitant",
+        "forest_coverage_percent_2019" : "Surface occupée par des forêts",
+        "gini_inegalite_de_repartition_2018" : "Inégalités de répartitions",
+        "hdi_human_development_index_2021" : "Indice de développement humain",
+        "menace_changement_climatique_2021" : "Changement climatique évalué comme une menace",
+        "percentage_women_in_national_parliaments_2021" : "Région",
+        "personal_computers_per_100_people_2005" : "Nombre d'ordinateurs personnels pour 100 personnes",
+        "revenu_moyen_menage_2022" : "Revenu moyen des ménages",
+        "sex_ratio_all_age_groups_2022" : "Nombre d'hommes pour 100 femmes",
+        "sustainable_developement_index_2019" : "Indice de développement durable",
+        "child_mortality_0_5_year_olds_dying_per_1000_born_2022" : "Mortalité infantile pour 1000 naissances",
+    }
     subdata = full_dataset[metric]
     if group != "All":
         subdata = full_dataset[full_dataset["region"]==group][metric]
     children = [
         html.Br(),
-        html.Label("Statistiques descriptives de la "+metric+" dans le groupe "+group),
+        html.Label("Statistiques descriptives de la "+dico[metric]+" dans le groupe "+group),
         html.Br(),
         html.Br(),
         html.Label("Nombre de valeur disponible : " + str(subdata.count())),html.Br(),
@@ -267,8 +286,7 @@ def title(plot_x, plot_y):
         "revenu_moyen_menage_2022" : "Revenu moyen des ménages",
         "sex_ratio_all_age_groups_2022" : "Nombre d'hommes pour 100 femmes",
         "sustainable_developement_index_2019" : "Indice de développement durable",
-        "child_mortality_0_5_year_olds_dying_per_1000_born_2022" : "Mortalité infantile pour 1000 naissances",    
-
+        "child_mortality_0_5_year_olds_dying_per_1000_born_2022" : "Mortalité infantile pour 1000 naissances",
     }
     selected_columns = f"{dico[plot_y]} en fonction de {dico[plot_x]}"
     return selected_columns
