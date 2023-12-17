@@ -88,6 +88,7 @@ app.layout = html.Div(
                             ],
                             style={'display': 'flex'}
                         ),
+                        html.Label(id='selected_columns_label'),
                         dcc.Graph(id="scatterplot"),
                     ]),
                     dcc.Tab(label="Clustering et ACP",id="cluster",children=[
@@ -185,6 +186,38 @@ def group_to_rgba(group):
     to_opacify= (group == -1)
     color_group.loc[to_opacify] = color_group.loc[to_opacify].apply(lambda x: (x[0], x[1], x[2], 0.3))
     return color_group
+
+@callback(
+    Output('selected_columns_label', 'children'),
+    Input("plot_x", "value"),
+    Input("plot_y", "value")
+)
+
+
+def title(plot_x, plot_y):
+    dico = {
+        "country" : "Pays",
+        "region" : "Région",
+        "co2_emissions_tonnes_per_person_2018" : "Émissions de carbone",
+        "consumption_emission_cap_2022" : "Émissions liées à la consommation par habitant",
+        "corruption_perception_index_cpi_2017" : "Indice de perception de la corruption",
+        "energy_production_per_person_2009" : "Région",
+        "energy_use_per_person_2014" : "Utilisation d'énergie par habitant",
+        "forest_coverage_percent_2019" : "Surface occupée par des forêts",
+        "gini_inegalite_de_repartition_2018" : "Inégalités de répartitions",
+        "hdi_human_development_index_2021" : "Indice de développement humain",
+        "menace_changement_climatique_2021" : "Changement climatique évalué comme une menace",
+        "percentage_women_in_national_parliaments_2021" : "Région",
+        "personal_computers_per_100_people_2005" : "Nombre d'ordinateurs personnels pour 100 personnes",
+        "revenu_moyen_menage_2022" : "Revenu moyen des ménages",
+        "sex_ratio_all_age_groups_2022" : "Nombre d'hommes pour 100 femmes",
+        "sustainable_developement_index_2019" : "Indice de développement durable",
+        "child_mortality_0_5_year_olds_dying_per_1000_born_2022" : "Mortalité infantile pour 1000 naissances",    
+
+    }
+    selected_columns = f"{dico[plot_x]} en fonction de {dico[plot_y]}"
+    return selected_columns
+
 
 @callback(
     Output("clusterplot", "figure"),
