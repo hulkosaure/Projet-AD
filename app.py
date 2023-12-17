@@ -3,6 +3,7 @@ import dash_ag_grid as dag
 import dash_daq as daq
 import plotly.express as px
 import plotly.graph_objects as go
+import matplotlib as plt
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -173,7 +174,16 @@ def scatter(plot_x, plot_y):
         return {}
 
 
-
+# Function to convert group numbers to RGBA colors (with alpha=0.3 for -1)
+def group_to_rgba(group):
+    maxgroup = group.max()
+    mingroup = group.min()
+    lengroup = maxgroup-mingroup
+    normalize_group = group.apply(lambda x : ((x-mingroup)/lengroup))
+    color_group = normalize_group.apply(plt.cm.get_cmap("viridis"))
+    to_opacify= (group == -1)
+    color_group.loc[to_opacify] = color_group.loc[to_opacify].apply(lambda x: (x[0], x[1], x[2], 0.3))
+    return color_group
 
 @callback(
     Output("clusterplot", "figure"),
@@ -204,6 +214,8 @@ def cluster_and_represent(cmethod, esp, min_samples, selected_columns):
     clusterer = DBSCAN(eps = esp, min_samples = min_samples) if cmethod=="DBSCAN" else AffinityPropagation()
     clustering = clusterer.fit(data_scaler)
 
+    transparency = [0.15 if label == -1 else 1 for label in clustering.labels_]
+
     # PCA
     pca = PCA(n_components=2)
     pca3d = PCA(n_components=3)
@@ -212,25 +224,30 @@ def cluster_and_represent(cmethod, esp, min_samples, selected_columns):
 
     data_pca= pd.DataFrame(data_pca, columns=["PC1","PC2"])
     data_pca['cluster_labels'] = clustering.labels_
+    data_pca["transparency"] = transparency
 
     data_pca_3d= pd.DataFrame(data_pca_3d, columns=["PC1","PC2","PC3"])
     data_pca_3d['cluster_labels'] = clustering.labels_
+    data_pca_3d["color"] = group_to_rgba(data_pca_3d["cluster_labels"])
 
     # Plots
     fig = go.Figure(data=go.Scatter(x=data_pca["PC1"], y=data_pca["PC2"],
         mode="markers",
-        marker=dict(color=data_pca["cluster_labels"]),
+        marker=dict(color=data_pca["cluster_labels"],
+                    opacity=data_pca["transparency"]),
         text=country,
         hovertemplate="<b>%{text}</b><br><br>" +
                     "Cluster: %{marker.color}<br>" +
                     "<extra></extra>",
     ))
+    z1, z2, z3 = np.random.random((3, len(clustering.labels_), 1))
     fig3d = go.Figure(data=[go.Scatter3d(x=data_pca_3d["PC1"], y=data_pca_3d["PC2"], z=data_pca_3d["PC3"],
         mode="markers",
-        marker=dict(color=data_pca_3d["cluster_labels"]),
+        marker=dict(color=data_pca_3d["color"]),
         text=country,
+        customdata=clustering.labels_,
         hovertemplate="<b>%{text}</b><br><br>" +
-                    "Cluster: %{marker.color}<br>" +
+                    "Cluster: %{customdata}<br>" +
                     "<extra></extra>",
     )])
     fig.update_layout(showlegend=False)
