@@ -28,6 +28,9 @@ def convertir_number(x):
 
 full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])] = full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])].applymap(convertir_number)
 
+with open('README.md', 'r', encoding='utf-8') as file:
+    readme = file.read()
+
 # Initialize the app
 app = Dash(__name__)
 
@@ -37,7 +40,7 @@ app.layout = html.Div(
         html.H1("Étude de différentes métriques sur les pays"),
         dcc.Tabs(id="general_tabs", value="t1", children=[
             dcc.Tab(label="Présentation", value="t1", children=[
-                html.Div(children="présentation (à faire)")
+                dcc.Markdown(children=readme)
             ]),
             dcc.Tab(label="Analyse", value="t2", children=[
                 html.Label('Sélectionnez les colonnes à afficher :'),
