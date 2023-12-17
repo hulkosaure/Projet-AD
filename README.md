@@ -12,7 +12,11 @@ Le dashboard est lancé avec la ligne de commande `python app.py` ou `python3 ap
 
 # Explication du dashboard
 
-L'onglet `Analyse` permet de visualiser les données. L'utilisateur peut choisir les colonnes à afficher ou les masquer dans le cadre situé au dessus du tableau de données.  
+L'onglet `Analyse` permet de visualiser les données. L'utilisateur peut choisir les colonnes à afficher ou les masquer dans le cadre situé au dessus du tableau de données.
+
+On y trouve trois sous-parties :
+
+L'onglet `Statistiques descriptives` permet de voir les statistiques descriptives basiques (moyenne, médiane, variance, ...) pour chaque métrique et chaque région du monde (ou sur le jeu de données complet).
 L'onglet `Nuage de points entre deux métriques`, situé en dessous du tableau de données permet de choisir librement deux colonnes du tableau pour créer un nuage de points. Les points sont colorés en fonction de la région du pays selon les groupes régionaux des Nations Unies.  
 L'onglet `Clustering et ACP` permet à l'utilisateur de sélectionner plusieurs colonnes de son choix et d'appliquer une méthode de clustering entre `AffinityPropagation` et `DBSCAN`, en choisissant les paramètres pour `DBSCAN`. Une ACP est ensuite effectuée sur les résultats pour permettre une visualisation dans l'espace des clusters détectés.  
 
