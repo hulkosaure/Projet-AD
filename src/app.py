@@ -31,7 +31,7 @@ def convertir_number(x):
 full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])] = full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])].applymap(convertir_number)
 # retrait manuel d'une valeur aberrante
 full_dataset.loc[full_dataset['country'] == 'Georgia', 'consumption_emission_cap_2022'] = np.nan
-with open('README.md', 'r', encoding='utf-8') as file:
+with open('../README.md', 'r', encoding='utf-8') as file:
     readme = file.read()
 
 # Initialize the app
