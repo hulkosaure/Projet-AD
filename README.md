@@ -1,7 +1,7 @@
 # Présentation
 Ce dashboard a été conçu dans le cadre d'un projet pour l'UE Analyse de Données du master 2 de bioinformatique à l'université Claude Bernard Lyon 1.
 Il permet de visualiser le jeu de données sous la forme d'un tableau, et de nuages de points. Une recherche de clusters peut être effectuées sur une sélection de données choisies par l'utilisateur, et les résultats peuvent être observés à l'aide d'une analyse en composantes principales.  
-jsp quoi dire de plus.  
+
 
 # Installation des dépendances et mise en route
 Toutes les libraires nécessaires au fonctionnement du dashboard sont répertoriées dans le fichier requirements.txt.  
@@ -10,14 +10,14 @@ Elles peuvent être installées automatiquement avec la commande :
 
 Le dashboard est lancé avec la ligne de commande `python app.py` ou `python3 app.py` et est accessible à l'adresse affichée dans la console (ex: http://127.0.0.1:8050/)
 
-# Esplication du dashboard
-~~feur~~  
-L'onglet Analyse permet de visualiser les données. L'utilisateur peut choisir les colonnes à afficher ou masquer dans le cadre situé au dessus du tableau de données.  
-L'onglet Nuage de points entre deux métriques, situé en dessous du tableau de données permet de choisir librement deux colonnes du tableau pour créer un nuage de points. Les points sont colorés en fonction de la région du pays selon les groupes régionaux des Nations Unies.  
-L'onglet Clustering et ACP permet à l'utilisateur de sélectionner plusieurs colonnes de son choix et d'appliquer des méthodes d'apprentissage non-supervisé, en choisissant les paramètres. Une ACP est ensuite effectuée sur les résultats pour permettre une visualisation dans l'espace des clusters détectés.  
+# Explication du dashboard
+
+L'onglet `Analyse` permet de visualiser les données. L'utilisateur peut choisir les colonnes à afficher ou les masquer dans le cadre situé au dessus du tableau de données.  
+L'onglet `Nuage de points entre deux métriques`, situé en dessous du tableau de données permet de choisir librement deux colonnes du tableau pour créer un nuage de points. Les points sont colorés en fonction de la région du pays selon les groupes régionaux des Nations Unies.  
+L'onglet `Clustering et ACP` permet à l'utilisateur de sélectionner plusieurs colonnes de son choix et d'appliquer une méthode de clustering entre `AffinityPropagation` et `DBSCAN`, en choisissant les paramètres pour `DBSCAN`. Une ACP est ensuite effectuée sur les résultats pour permettre une visualisation dans l'espace des clusters détectés.  
 
 # Dataset  
-Notre jeu de données est issu de la fusion de plusieurs jeux de données simples téléchargés sur Gapminder.  FREE DATA FROM WORLD BANK VIA GAPMINDER.ORG, CC-BY LICENSE  
+Notre jeu de données est issu de la fusion de plusieurs jeux de données simples téléchargés sur Gapminder.
 Pour le choix des colonnes, nous avons chacun de notre côté sélectionné plusieurs jeux de données qui nous semblaient intéressants, puis nous avons mis nos choix en commun et procédé à un nettoyage des données. Certaines données n'étaient pas disponibles pour près de la moitié des pays (décès liés à des accidents de voiture), et certains pays ne présentaient que très peu de données par rapport au nombre total de métriques sélectionnées (Vatican, autres exemples de petites iles): dans les deux cas, nous avons fait le choix de supprimer les données.  
 Les pays ont été attribués à différents régions selon la classification des groupes régionaux des Nations Unies.
 
@@ -41,6 +41,7 @@ Détail de chaque métrique :
 **co2_emissions_tonnes_per_person** : Émissions de carbone dues à la combustion d'énergies fossiles.  
 **revenu_moyen_menage** : Revenu moyen d'un ménage (2022).  
 
+La compilation des données brutes de Gapminder et une partie du preprocessing est disponible dans le jupyter notebook [`./make_full_dataset.ipynb`](./make_full_dataset.ipynb).
 
 
 
