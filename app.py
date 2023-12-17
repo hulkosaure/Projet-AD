@@ -28,7 +28,8 @@ def convertir_number(x):
         return float(x)
 
 full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])] = full_dataset.loc[:, full_dataset.columns.difference(['country', 'region'])].applymap(convertir_number)
-
+# retrait manuel d'une valeur aberrante
+full_dataset.loc[full_dataset['country'] == 'Georgia', 'consumption_emission_cap_2022'] = np.nan
 with open('README.md', 'r', encoding='utf-8') as file:
     readme = file.read()
 
@@ -215,7 +216,7 @@ def title(plot_x, plot_y):
         "child_mortality_0_5_year_olds_dying_per_1000_born_2022" : "Mortalité infantile pour 1000 naissances",    
 
     }
-    selected_columns = f"{dico[plot_x]} en fonction de {dico[plot_y]}"
+    selected_columns = f"{dico[plot_y]} en fonction de {dico[plot_x]}"
     return selected_columns
 
 
