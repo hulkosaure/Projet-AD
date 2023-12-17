@@ -8,7 +8,7 @@ Toutes les libraires nécessaires au fonctionnement du dashboard sont répertori
 Elles peuvent être installées automatiquement avec la commande :  
 `pip install -r requirements.txt`
 
-Le dashboard est lancé avec la ligne de commande `python app.py` ou `python3 app.py` et est accessible à l'adresse affichée dans la console (ex: http://127.0.0.1:8050/)
+Le dashboard est lancé avec la ligne de commande `python app.py` ou `python3 app.py` et est accessible à l'adresse affichée dans la console (ex: http://127.0.0.1:8050/).
 
 # Explication du dashboard
 
