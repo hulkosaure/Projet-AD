@@ -17,6 +17,7 @@ columns = full_dataset.columns.tolist()
 numeric_columns = columns.copy()
 numeric_columns.remove("country")
 numeric_columns.remove("region")
+list_region = list(set(full_dataset['region']))
 
 # Clean the data
 def convertir_number(x):
@@ -63,6 +64,23 @@ app.layout = html.Div(
                     style={"height": 265}),
                 html.Hr(),
                 dcc.Tabs(id="which_plot", value="scatter", children=[
+                    dcc.Tab(label="Statistiques descriptives",id="stat_desc", children=[
+                        html.Br(),
+                        html.Label("Métrique où calculer les statistiques descriptives :"),
+                        dcc.Dropdown(
+                            id="stat_metric",
+                            options=[{'label': col, 'value': col} for col in numeric_columns],
+                            value="co2_emissions_tonnes_per_person_2018"
+                        ),
+                        html.Br(),
+                        html.Label("Groupe où calculer les statistiques : "),
+                        dcc.Dropdown(
+                            id="stat_group",
+                            options=list_region+["All"],
+                            value="All"
+                        ),
+                        html.Div(id="statos")
+                    ]),
                     dcc.Tab(label="Nuage de point entre deux métriques",id="scatter", children=[
                         html.Div(
                             [
@@ -70,8 +88,8 @@ app.layout = html.Div(
                                     [
                                         html.Label('Abscisses:'),
                                         dcc.Dropdown(
-                                            id='plot_x',
                                             value = "revenu_moyen_menage_2022",
+                                            id='plot_x',
                                             options=[{'label': col, 'value': col} for col in full_dataset.columns],
                                         ),
                                     ],
@@ -81,8 +99,8 @@ app.layout = html.Div(
                                     [
                                         html.Label('Ordonnées:'),
                                         dcc.Dropdown(
-                                            id='plot_y',
                                             value = "child_mortality_0_5_year_olds_dying_per_1000_born_2022",
+                                            id='plot_y',
                                             options=[{'label': col, 'value': col} for col in full_dataset.columns],
                                         ),
                                     ],
@@ -95,14 +113,20 @@ app.layout = html.Div(
                         dcc.Graph(id="scatterplot"),
                     ]),
                     dcc.Tab(label="Clustering et ACP",id="cluster",children=[
-                        html.Label('Selectionner les colonnes voulus pour le clustering puis l\'ACP :'),
+                        html.Br(),
+                        html.Label('Sélectionner les colonnes voulus pour le clustering puis l\'ACP :'),
+                        html.Br(),
+                        html.Br(),
                         dcc.Dropdown(
                             id='analysed_data',
                             options=[{'label': col, 'value': col} for col in numeric_columns],
                             multi=True,
                             value=numeric_columns
                             ),
+                        html.Br(),
                         html.Label('Méthode de clustering :'),
+                        html.Br(),
+                        html.Br(),
                         dcc.RadioItems(
                             id = "clusteringmethod",
                             options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
@@ -134,13 +158,41 @@ app.layout = html.Div(
 )
 
 @callback(
+    Output('statos','children'),
+    Input('stat_metric','value'),
+    Input('stat_group','value')
+)
+def compute_desc_stat(metric, group):
+    subdata = full_dataset[metric]
+    if group != "All":
+        subdata = full_dataset[full_dataset["region"]==group][metric]
+    children = [
+        html.Br(),
+        html.Label("Statistiques descriptives de la "+metric+" dans le groupe "+group),
+        html.Br(),
+        html.Br(),
+        html.Label("Nombre de valeur disponible : " + str(subdata.count())),html.Br(),
+        html.Label("Moyenne : " + str(subdata.mean())),html.Br(),
+        html.Label("Variance : " + str(subdata.var())),html.Br(),
+        html.Label("Écart-type : " + str(subdata.std())),html.Br(),
+        html.Label("Médiane : " + str(subdata.median())),html.Br(),
+        html.Label("Maximum : " + str(subdata.max())),html.Br(),
+        html.Label("Minimum : " + str(subdata.min())),html.Br(),
+        html.Label("Premier quantile : " + str(subdata.quantile(0.25))),html.Br(),
+        html.Label("Troisième quantile : " + str(subdata.quantile(0.75))),html.Br(),
+    
+        ]
+    return children
+        
+
+
+@callback(
     Output('test', 'columnDefs'),
     Output('test', 'rowData'),
     Output('column-dropdown', 'value'),
     Input('reset-button', 'n_clicks'),
     Input('column-dropdown', 'value')
 )
-
 def update_data(reset_clicks, selected_columns):
     
     # Ajout des colonnes 'country' et 'region' en premier dans la sélection
