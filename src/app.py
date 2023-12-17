@@ -12,7 +12,7 @@ from sklearn.decomposition import PCA
 
 
 # Incorporate data
-full_dataset = pd.read_csv('data/full_dataset.csv')
+full_dataset = pd.read_csv('../data/full_dataset.csv')
 columns = full_dataset.columns.tolist()
 numeric_columns = columns.copy()
 numeric_columns.remove("country")
@@ -66,14 +66,14 @@ app.layout = html.Div(
                 dcc.Tabs(id="which_plot", value="scatter", children=[
                     dcc.Tab(label="Statistiques descriptives",id="stat_desc", children=[
                         html.Br(),
-                        html.Label("Métrique où calculer les statistiques descriptives :"),
+                        html.Label("Métrique choisie :"),
                         dcc.Dropdown(
                             id="stat_metric",
                             options=[{'label': col, 'value': col} for col in numeric_columns],
                             value="co2_emissions_tonnes_per_person_2018"
                         ),
                         html.Br(),
-                        html.Label("Groupe où calculer les statistiques : "),
+                        html.Label("Groupe choisi : "),
                         dcc.Dropdown(
                             id="stat_group",
                             options=list_region+["All"],
@@ -114,7 +114,7 @@ app.layout = html.Div(
                     ]),
                     dcc.Tab(label="Clustering et ACP",id="cluster",children=[
                         html.Br(),
-                        html.Label('Sélectionner les colonnes voulus pour le clustering puis l\'ACP :'),
+                        html.Label('Sélectionner les colonnes voulues pour le clustering puis l\'ACP :'),
                         html.Br(),
                         html.Br(),
                         dcc.Dropdown(
@@ -129,7 +129,7 @@ app.layout = html.Div(
                         html.Br(),
                         dcc.RadioItems(
                             id = "clusteringmethod",
-                            options=['AffinityPropagation','DBSCAN'], # regler dbscan probleme, pas de cluster = -1 donc mettre couleur noir si possible
+                            options=['AffinityPropagation','DBSCAN'],
                             value='AffinityPropagation',
                             inline=True),
                         html.Div(id="dbscan_parameters", children=[
@@ -399,5 +399,6 @@ def check_int_value(val):
         return 5  # si la valeur mise n'est pas un entier, alors la valeur par défaut 5 est mise
 
 server = app.server
+
 if __name__ == "__main__":
     app.run(debug=True)
