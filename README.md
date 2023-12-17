@@ -2,6 +2,8 @@
 Ce dashboard a été conçu dans le cadre d'un projet pour l'UE Analyse de Données du master 2 de bioinformatique à l'université Claude Bernard Lyon 1.
 Il permet de visualiser le jeu de données sous la forme d'un tableau, et de nuages de points. Une recherche de clusters peut être effectuées sur une sélection de données choisies par l'utilisateur, et les résultats peuvent être observés à l'aide d'une analyse en composantes principales.  
 
+Le projet est disponible en ligne à l'URL [https://pjad.onrender.com/](https://pjad.onrender.com/) (le site peut mettre du temps à charger le dashboard).
+
 
 # Installation des dépendances et mise en route
 Toutes les libraires nécessaires au fonctionnement du dashboard sont répertoriées dans le fichier requirements.txt.  
